@@ -1,36 +1,21 @@
-import Hapi from 'hapi';
+var restify = require('restify')
+var graphqlHTTP = require('express-graphql')
+var schema = require('./schema')
 
-const server = new Hapi.Server();
-server.connection({ port: 3000 });
+var app = restify.createServer();
+var port = process.env.PORT || 4000;
 
-server.route({
-    method: 'POST',
-    path: '/graphql',
-    handler: require('./handlers/graphql'),
-    config: {
-        payload: {
-            parse: false,
-            allow: 'application/graphql'
-        }
-    }
-});
+app.post('graphql', graphqlHTTP({
+    schema: schema,
+    graphiql: false
+}))
 
-server.route({
-    method: 'GET',
-    path: '/schema',
-    handler: require('./handlers/schema-printer')
-});
+app.get('/graphql', graphqlHTTP({
+  schema: schema,
+  graphiql:  true,
+}));
 
-server.route({
-    method: 'GET',
-    path: '/{param*}',
-    handler: {
-        directory: {
-            path: 'public'
-        }
-    }
-});
-
-server.start(function() {
-    console.log('Server running at:', server.info.uri);
+app.listen(port, function() {
+    console.log('Running a GraphQL API server at localhost:<port>/graphql.');
+    console.log('Listening on port: ' + port);
 });

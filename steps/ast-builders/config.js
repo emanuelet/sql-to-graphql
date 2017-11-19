@@ -16,11 +16,20 @@ module.exports = function buildConfig(opts) {
 function getConfigAst(opts) {
     return b.objectExpression([
         b.property('init', b.identifier('client'), b.literal(opts.backend)),
-        b.property('init', b.identifier('connection'), buildObject({
+        b.property('init', b.identifier('connection'), 
+            buildObject(getConnectionConfig(opts)))
+    ]);
+}
+
+function getConnectionConfig(opts) {
+    return opts.backend === 'sqlite' ?
+        { 
+            filename: opts.dbFilename 
+        } :
+        {                
             host: opts.host,
             user: opts.user,
             password: opts.password,
             database: opts.db
-        }))
-    ]);
+        };
 }
