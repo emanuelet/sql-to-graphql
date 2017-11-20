@@ -43,7 +43,7 @@ module.exports = require('yargs')
     })
     .option('backend', {
         alias: 'b',
-        describe: 'Type of database (mysql, postgres, sqlite)',
+        describe: 'Type of database (mysql, postgres, sqlite, mssql)',
         type: 'string',
         default: 'mysql'
     })
