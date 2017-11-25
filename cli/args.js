@@ -101,5 +101,11 @@ module.exports = require('yargs')
         type: 'boolean',
         default: false
     })
+    .option('db-schema', {
+        alias: 's',
+        describe: 'The database schema to use for tables and views',
+        type: 'string',
+        default: 'dbo'
+    })
     .help('help')
     .argv;

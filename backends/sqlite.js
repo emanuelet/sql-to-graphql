@@ -2,9 +2,8 @@
 'use strict';
 
 var knex = require('knex');
-var knexString = require('knex/src/query/string');
-var pluck = require('lodash/collection/pluck');
-var contains = require('lodash/collection/includes');
+var pluck = require('lodash/map');
+var contains = require('lodash/includes');
 
 module.exports = function sqliteBackend(opts, callback) {
     var sqlite = knex({
@@ -44,9 +43,9 @@ module.exports = function sqliteBackend(opts, callback) {
         getTableStructure: function(tableName, cb) {
             var dbName = opts.database || 'main';
             var rawSql = 'pragma '
-                         + knexString.escape(dbName)
+                         + dbName
                          + '.table_info('
-                         + knexString.escape(tableName)
+                         + tableName
                          + ');';
             sqlite
                 .raw(rawSql)

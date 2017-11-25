@@ -21,15 +21,21 @@ function getConfigAst(opts) {
     ]);
 }
 
-function getConnectionConfig(opts) {
-    return opts.backend === 'sqlite' ?
-        { 
-            filename: opts.dbFilename 
-        } :
-        {                
-            host: opts.host,
-            user: opts.user,
-            password: opts.password,
-            database: opts.db
-        };
+function getConnectionConfig(options) {
+    var config = options.backend === 'sqlite' ?
+    { 
+        filename: options.dbFilename 
+    } :
+    {                
+        host: options.host,
+        user: options.user,
+        password: options.password,
+        database: options.db,
+    };
+
+    if(options.b === 'mssql')
+        config.options = {encrypt: true}
+
+    return config;
 }
+

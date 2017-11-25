@@ -1,9 +1,9 @@
 'use strict';
 
-var merge = require('lodash/object/merge');
-var indexBy = require('lodash/collection/indexBy');
-var camelCase = require('lodash/string/camelCase');
-var capitalize = require('lodash/string/capitalize');
+var merge = require('lodash/merge');
+var indexBy = require('lodash/keyBy');
+var camelCase = require('lodash/camelCase');
+var capitalize = require('lodash/capitalize');
 var generics = ['type'], undef;
 
 function columnToObject(col, opts) {
@@ -74,6 +74,7 @@ function getType(col) {
         case 'numeric':
         case 'geometry':
         case 'bigserial':
+        case 'money':
 
         // Network addresses represented as strings
         case 'cidr':
@@ -91,6 +92,7 @@ function getType(col) {
         case 'longtext':
         case 'character':
         case 'mediumtext':
+        case 'uniqueidentifier':
         // pg
         case 'character varying':
         case 'jsonb':

@@ -13,10 +13,12 @@
   "dependencies": {
     "babel": "^5.8.20",
     "boom": "^2.8.0",
-    "graphql": "^0.4.2",
+    "graphql": "^0.11.0",
     "hapi": "^8.8.1",
-    "knex": "^0.8.6",
+    "knex": "^0.14.1",
     "mysql": "^2.8.0",
+    "mssql": "^4.1.0",
+    "sqlite3": "3.1.0",
     "express-graphql": "^0.6.11",
     "restify": "^6.3.2"
   }

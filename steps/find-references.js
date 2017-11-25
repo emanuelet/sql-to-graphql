@@ -1,8 +1,8 @@
 'use strict';
 
-var filter = require('lodash/collection/filter');
-var snakeCase = require('lodash/string/snakeCase');
-var capitalize = require('lodash/string/capitalize');
+var filter = require('lodash/filter');
+var snakeCase = require('lodash/snakeCase');
+var capitalize = require('lodash/capitalize');
 
 function findReferences(models) {
     for (var type in models) {

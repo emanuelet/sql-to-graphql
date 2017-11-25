@@ -7,7 +7,8 @@ SELECT
     c.precision ,
     c.scale ,
     c.is_nullable,
-    i.is_primary_key
+    i.is_primary_key,
+    t.*
 FROM    
     sys.columns c
 INNER JOIN 
@@ -19,5 +20,8 @@ LEFT OUTER JOIN
 LEFT OUTER JOIN 
     sys.indexes i ON ic.object_id = i.object_id AND ic.index_id = i.index_id
 WHERE
-    c.object_id = OBJECT_ID(schema_name(o.schema_id) + '.ViewAuthorizedPublicMarketIASTransactions_v2')
+    c.object_id = OBJECT_ID(schema_name(o.schema_id) + '.Product')
 ORDER BY c.column_id
+
+
+select * from SalesLT.Product
