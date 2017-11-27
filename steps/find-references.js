@@ -3,6 +3,8 @@
 var filter = require('lodash/filter');
 var snakeCase = require('lodash/snakeCase');
 var capitalize = require('lodash/capitalize');
+var camelCase = require('lodash/camelCase');
+var getTypeName = require('../util/get-type-name');
 
 function findReferences(models) {
     for (var type in models) {
@@ -24,7 +26,7 @@ function findReferencesForModel(model, models) {
         var parts = snakeCase(colName).split('_'), fieldName;
 
         do {
-            var name = parts.map(capitalize).join('');
+            var name = getTypeName(parts.map(capitalize).join(''));
 
             // Do we have a match for this?
             if (models[name]) {

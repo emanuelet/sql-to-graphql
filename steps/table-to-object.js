@@ -1,10 +1,8 @@
 'use strict';
 
-var pluralize = require('pluralize');
-var camelCase = require('lodash/camelCase');
-var capitalize = require('lodash/capitalize');
 var indexBy = require('lodash/keyBy');
 var columnToObject = require('./column-to-object');
+var getTypeName = require('../util/get-type-name');
 
 function tableToObject(table, opts) {
     var normalized = normalizeTableName(table.name, {
@@ -31,13 +29,7 @@ function tableToObject(table, opts) {
         }, {})
     };
 
-    console.log("=== Model ===");
-    console.log(model);
     return model;
-}
-
-function getTypeName(item) {
-    return pluralize(capitalize(camelCase(item)), 1);
 }
 
 function normalizeTableName(name, strip) {
