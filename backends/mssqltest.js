@@ -40,7 +40,7 @@ knex
   .leftOuterJoin('sys.indexes', function() {
     this.on('sys.index_columns.object_id', 'sys.indexes.object_id')
         .andOn('sys.index_columns.index_id','sys.indexes.index_id')})
-  .whereRaw('columns.object_id = object_id(schema_name(objects.schema_id) + ?)', ['.product'])
+  .whereRaw('columns.object_id = object_id(schema_name(objects.schema_id) + \'.\' + ?)', ['product'])
   .orderBy('columns.column_id')
   .then(function(rows) {
     console.log(rows)

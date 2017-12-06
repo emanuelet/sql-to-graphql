@@ -69,7 +69,7 @@ module.exports = function mssqlBackend(opts, callback) {
                     {ordinal_position: 'columns.column_id'},
                     {data_type: 'types.name'},
                     'columns.is_nullable',
-                    knex.raw('CASE WHEN indexes.is_primary_key = 1 THEN'+
+                    knex.raw('CASE WHEN indexes.is_primary_key = 1 THEN '+
                              '\'PRI\' ELSE \'\' END as column_key'),
                     'types.is_user_defined'])
                 .select()
@@ -90,9 +90,10 @@ module.exports = function mssqlBackend(opts, callback) {
                             'sys.indexes.object_id')
                         .andOn('sys.index_columns.index_id',
                                'sys.indexes.index_id')})
-                .whereRaw('columns.object_id = '+
+                .whereRaw('schema_name(objects.schema_id) = ? and '+
+                          'columns.object_id = '+
                           'object_id(schema_name(objects.schema_id) + ?)',
-                          ['.' + tableName])
+                          [opts.dbSchema, '.' + tableName])
                 .orderBy('columns.column_id')
                 .catch(tblCb)
                 .then(function(info) {

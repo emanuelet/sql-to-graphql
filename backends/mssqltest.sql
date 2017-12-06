@@ -1,3 +1,5 @@
+--This scrit requires the following permission
+--GRANT VIEW Definition TO graphql
 
 SELECT 
     c.name 'column_name',

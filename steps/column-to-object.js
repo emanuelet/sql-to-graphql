@@ -56,6 +56,8 @@ function getType(col) {
         case 'time':
         case 'date':
         case 'datetime':
+        case 'datetime2':
+        case 'datetimeoffset':
         // pg
         case 'timestamp with time zone':
 

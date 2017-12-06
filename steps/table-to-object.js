@@ -29,6 +29,8 @@ function tableToObject(table, opts) {
         }, {})
     };
 
+    console.log("===MODEL===");
+    console.log(model);
     return model;
 }
 
